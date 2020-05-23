@@ -20,7 +20,7 @@ function generatePassword() {
   confirm("Let's confirm your criteria for your password");
 
   // Prompt to decide the length of the password
-  var passwordLength = prompt("Choose a length of at least 8 characters and no more than 128 characters");
+  var passwordLength = enterPasswordLengthPrompt();
 
   // Prompt to decide if lowercase characters are to be included in the password
 
@@ -34,5 +34,17 @@ function generatePassword() {
   // Prompt to decide if special characters are to be included in the password
 
   //Password
-  return passwordLength;
+
+};
+
+function enterPasswordLengthPrompt() {
+  var lengthEntered = Number(window.prompt("Choose a length of at least 8 characters and no more than 128 characters", ""));
+  console.log(lengthEntered);
+  if (lengthEntered < 8) {
+    alert("Password length too short");
+  } else if (lengthEntered > 128) {
+    alert("Password length too long")
+  } else {
+    return lengthEntered;
+  }
 };
