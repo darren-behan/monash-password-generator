@@ -14,8 +14,25 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-document.getElementById('generate').onclick = function alertBtnClicked() {
-  confirm('We need to confirm your password criteria!')
-};
+// Function to generate a password
+function generatePassword() {
+  // Message to continue to confirm criteria to build the password
+  confirm("Let's confirm your criteria for your password");
 
-// var specialCharacters = ["!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"];
+  // Prompt to decide the length of the password
+  var passwordLength = prompt("Choose a length of at least 8 characters and no more than 128 characters");
+
+  // Prompt to decide if lowercase characters are to be included in the password
+
+
+  // Prompt to decide if uppercase characters are to be included in the password
+
+
+  // Prompt to decide if numeric characters are to be included in the password
+
+
+  // Prompt to decide if special characters are to be included in the password
+
+  //Password
+  return passwordLength;
+};
