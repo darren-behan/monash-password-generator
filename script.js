@@ -38,13 +38,13 @@ function generatePassword() {
 };
 
 function enterPasswordLengthPrompt() {
-  var lengthEntered = Number(window.prompt("Choose a length of at least 8 characters and no more than 128 characters", ""));
-  console.log(lengthEntered);
-  if (lengthEntered < 8) {
+  var numberEntered = Number(window.prompt("Choose a length of at least 8 characters and no more than 128 characters", ""));
+  console.log(numberEntered);
+  if (numberEntered < 8) {
     alert("Password length too short");
-  } else if (lengthEntered > 128) {
+  } else if (numberEntered > 128) {
     alert("Password length too long")
   } else {
-    return lengthEntered;
+    return numberEntered;
   }
 };
