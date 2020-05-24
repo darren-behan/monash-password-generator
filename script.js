@@ -14,38 +14,18 @@ generateBtn.addEventListener("click", writePassword);
 
 // Function to generate a password
 function generatePassword() {
+  lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
+  uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  numberCharacters = "0123456789";
+  specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+  passwordCharacters = "";
+  password = "";
+
   // Message to continue to confirm criteria to build the password
-  var confirm = confirmation();
+  var confirm = userConfirmation();
   if (confirm === false) {
     return;
   }
-
-  // Return of prompt responses 
-  var criteria = criteriaPrompts();
-
-  // Show criteria selected
-  if (confirm === true && criteria === true) {
-    document.getElementById("instructions").hidden = true;
-    document.getElementById("criteria").hidden = false;
-  }
-
-  //Password
-  // return password;
-}
-
-// Confirmation that the user wants to continue
-function confirmation() {
-  var userConfirmation = confirm(
-    "Let's confirm your criteria for your password"
-  );
-  return userConfirmation;
-}
-
-function criteriaPrompts() {
-  lowercase = "abcdefghijklmnopqrstuvwxyz";
-  uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  numbers = "0123456789";
-  punctuation = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
   // Prompt to decide the length of the password
   var passwordLength = enterPasswordLengthPrompt();
@@ -58,36 +38,35 @@ function criteriaPrompts() {
     // Exits if password is too long
     return;
   }
+
+  // Show criteria selected
+  if (confirm === true) {
+    document.getElementById("instructions").hidden = true;
+    document.getElementById("criteria").hidden = false;
+  }
   
   // Prompt to decide if lowercase characters are to be included in the password
-  var lowercaseChar = confirm(
-    "Click OK to confirm including lowercase characters."
-  );
-  // Checks #lowercase checkbox if user selects true
-  check(lowercaseChar, "lowercase");
+  var lowercaseChar = userConfirmLowercase();
 
   // Prompt to decide if uppercase characters are to be included in the password
-  var uppercaseChar = confirm(
-    "Click OK to confirm including uppercase characters."
-  );
-  // Checks #uppercase checkbox if user selects true
-  check(uppercaseChar, "uppercase");
+  var uppercaseChar = userConfirmUppercase()
 
   // Prompt to decide if numeric characters are to be included in the password
-  var numericChar = confirm(
-    "Click OK to confirm including numeric characters."
-  );
-  // Checks #numeric checkbox if user selects true
-  check(numericChar, "numeric");
+  var numberChar = userConfirmNumericChar()
 
   // Prompt to decide if special characters are to be included in the password
-  var specialChar = confirm(
-    "Click OK to confirm including special characters."
-  );
-  // Checks #special checkbox if user selects true
-  check(specialChar, "special");
+  var specialChar = userConfirmSpecialChar()
 
-  return lowercaseChar && uppercaseChar && numericChar && specialChar;
+  //Password
+  return password;
+}
+
+// Confirmation that the user wants to continue
+function userConfirmation() {
+  var confirmation = confirm(
+    "Let's confirm your criteria for your password"
+  );
+  return confirmation;
 }
 
 // Prompt to decide the length of the password
@@ -101,6 +80,38 @@ function enterPasswordLengthPrompt() {
   // Sets #password-length text field with user number entered
   document.getElementById("password-length").value = numberEntered;
   return numberEntered;
+}
+
+function userConfirmLowercase() {
+  lowercaseChar = confirm(
+    "Click OK to confirm including lowercase characters."
+  );
+  // Checks #lowercase checkbox if user selects true
+  check(lowercaseChar, "lowercase");
+}
+
+function userConfirmUppercase() {
+  confirm(
+    "Click OK to confirm including uppercase characters."
+  );
+  // Checks #uppercase checkbox if user selects true
+  check(uppercaseChar, "uppercase");
+}
+
+function userConfirmNumericChar() {
+  confirm(
+    "Click OK to confirm including numeric characters."
+  );
+  // Checks #numeric checkbox if user selects true
+  check(numberChar, "numeric");
+}
+
+function userConfirmSpecialChar() {
+  confirm(
+    "Click OK to confirm including special characters."
+  );
+  // Checks #special checkbox if user selects true
+  check(specialChar, "special");
 }
 
 // Function to check checkboxes
