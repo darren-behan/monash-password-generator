@@ -12,27 +12,30 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// Add event listener to show criteria selected
-generateBtn.addEventListener("click", function() {
-  document.getElementById("instructions").hidden = true;
-  document.getElementById("criteria").hidden = false;
-}, false);
-
 // Function to generate a password
 function generatePassword() {
   // Message to continue to confirm criteria to build the password
-  confirm("Let's confirm your criteria for your password");
+  var confirm = confirmation();
+  if (confirm === false) {
+    return;
+  }
 
   // Prompt to decide the length of the password
   var passwordLength = enterPasswordLengthPrompt();
   if (passwordLength < 8) {
-    alert("Password length too short");
+    alert("Password length too short - try again");
     // Exits if password is too short
     return;
   } else if (passwordLength > 128) {
-    alert("Password length too long");
+    alert("Password length too long  - try again");
     // Exits if password is too long
     return;
+  }
+
+  // Show criteria selected
+  if (confirm === true) {
+    document.getElementById("instructions").hidden = true;
+    document.getElementById("criteria").hidden = false;
   }
 
   // Prompt to decide if lowercase characters are to be included in the password
@@ -49,6 +52,14 @@ function generatePassword() {
 
   //Password
   return password;
+}
+
+// Confirmation that the user wants to continue
+function confirmation() {
+  var userConfirmation = confirm(
+    "Let's confirm your criteria for your password"
+  );
+  return userConfirmation;
 }
 
 // Prompt to decide the length of the password
