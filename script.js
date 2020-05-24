@@ -1,14 +1,12 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button
@@ -21,52 +19,87 @@ function generatePassword() {
 
   // Prompt to decide the length of the password
   var passwordLength = enterPasswordLengthPrompt();
+  if (passwordLength < 8) {
+    alert("Password length too short");
+    return;
+  } else if (passwordLength > 128) {
+    alert("Password length too long");
+    return;
+  }
 
   // Prompt to decide if lowercase characters are to be included in the password
-  var lowercaseChar = lowercaseCharacters();
+  var lowercaseChar = lowercaseCharactersPrompt();
 
   // Prompt to decide if uppercase characters are to be included in the password
-  var uppercaseChar = uppercaseCharacters();
+  var uppercaseChar = uppercaseCharactersPrompt();
 
   // Prompt to decide if numeric characters are to be included in the password
-  var numericChar = numericCharacters();
+  var numericChar = numericCharactersPrompt();
 
   // Prompt to decide if special characters are to be included in the password
-  var specialChar = specialCharacters();
+  var specialChar = specialCharactersPrompt();
 
   //Password
-
-};
+  return password;
+}
 
 // Prompt to decide the length of the password
 function enterPasswordLengthPrompt() {
-  var numberEntered = Number(window.prompt("Choose a length of at least 8 characters and no more than 128 characters", ""));
+  var numberEntered = Number(
+    window.prompt(
+      "Enter a length of at least 8 characters and no more than 128 characters",
+      ""
+    )
+  );
   console.log(numberEntered);
-  if (numberEntered < 8) {
-    alert("Password length too short");
-  } else if (numberEntered > 128) {
-    alert("Password length too long")
-  } else {
-    return numberEntered;
-  }
-};
+  return numberEntered;
+}
 
 // Prompt to decide if lowercase characters are to be included in the password
-function lowercaseCharacters() {
-  
-};
+function lowercaseCharactersPrompt() {
+  var lowercaseChar = confirm(
+    "Click OK to confirm including lowercase characters."
+  );
+  check(lowercaseChar, "lowercase");
+  return lowercaseChar;
+}
 
 // Prompt to decide if uppercase characters are to be included in the password
-function uppercaseCharacters() {
-  
-};
+function uppercaseCharactersPrompt() {
+  var uppercaseChar = confirm(
+    "Click OK to confirm including uppercase characters."
+  );
+  check(uppercaseChar, "uppercase");
+  return uppercaseChar;
+}
 
 // Prompt to decide if numeric characters are to be included in the password
-function numericCharacters() {
-  
-};
+function numericCharactersPrompt() {
+  var numericChar = confirm(
+    "Click OK to confirm including numeric characters."
+  );
+  check(numericChar, "numeric");
+  return numericChar;
+}
 
 // Prompt to decide if special characters are to be included in the password
-function specialCharacters() {
-  
-};
+function specialCharactersPrompt() {
+  var specialChar = confirm(
+    "Click OK to confirm including special characters."
+  );
+  check(specialChar, "special");
+  return specialChar;
+}
+
+// Function to check checkboxes
+function check(x, y) {
+  if (x === true && y === "lowercase") {
+    document.getElementById("lowercase").checked = true;
+  } else if (x === true && y === "uppercase") {
+    document.getElementById("uppercase").checked = true;
+  } else if (x === true && y === "numeric") {
+    document.getElementById("numeric").checked = true;
+  } else if (x === true && y === "special") {
+    document.getElementById("special").checked = true;
+  }
+}
