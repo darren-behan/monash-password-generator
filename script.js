@@ -21,9 +21,11 @@ function generatePassword() {
   var passwordLength = enterPasswordLengthPrompt();
   if (passwordLength < 8) {
     alert("Password length too short");
+    // Exits if password is too short
     return;
   } else if (passwordLength > 128) {
     alert("Password length too long");
+    // Exits if password is too long
     return;
   }
 
@@ -51,7 +53,7 @@ function enterPasswordLengthPrompt() {
       ""
     )
   );
-  console.log(numberEntered);
+  document.getElementById("password-length").value = numberEntered;
   return numberEntered;
 }
 
