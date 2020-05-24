@@ -14,11 +14,11 @@ generateBtn.addEventListener("click", writePassword);
 
 // Function to generate a password
 function generatePassword() {
-  lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
-  uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  numberCharacters = "0123456789";
-  specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
-  passwordCharacters = "";
+  var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz",
+  uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  numberCharacters = "0123456789",
+  specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=",
+  passwordCharacters = "",
   password = "";
 
   // Message to continue to confirm criteria to build the password
@@ -47,15 +47,33 @@ function generatePassword() {
   
   // Prompt to decide if lowercase characters are to be included in the password
   var lowercaseChar = userConfirmLowercase();
+  // If lowercase is confirmed for use, assign the lowercaseCharacters variable to the passwordCharacters
+  if (lowercaseChar === true) {
+    passwordCharacters += lowercaseCharacters;
+  }
 
   // Prompt to decide if uppercase characters are to be included in the password
   var uppercaseChar = userConfirmUppercase()
+  // If lowercase is confirmed for use, assign the uppercaseCharacters variable to the passwordCharacters
+  if (uppercaseChar === true) {
+    passwordCharacters += uppercaseCharacters;
+  }
 
   // Prompt to decide if numeric characters are to be included in the password
   var numberChar = userConfirmNumberChar()
+  // If lowercase is confirmed for use, assign the numberCharacters variable to the passwordCharacters
+  if (numberChar === true) {
+    passwordCharacters += numberCharacters;
+  }
 
   // Prompt to decide if special characters are to be included in the password
   var specialChar = userConfirmSpecialChar()
+  // If lowercase is confirmed for use, assign the specialCharacters variable to the passwordCharacters
+  if (specialChar === true) {
+    passwordCharacters += specialCharacters;
+  }
+
+  password += passwordCharacters;
 
   //Password
   return password;
@@ -88,6 +106,7 @@ function userConfirmLowercase() {
   );
   // Checks #lowercase checkbox if user selects true
   check(lowercaseChar, "lowercase");
+  return lowercaseChar;
 }
 
 function userConfirmUppercase() {
@@ -96,6 +115,7 @@ function userConfirmUppercase() {
   );
   // Checks #uppercase checkbox if user selects true
   check(uppercaseChar, "uppercase");
+  return uppercaseChar;
 }
 
 function userConfirmNumberChar() {
@@ -104,6 +124,7 @@ function userConfirmNumberChar() {
   );
   // Checks #numeric checkbox if user selects true
   check(numberChar, "numeric");
+  return numberChar;
 }
 
 function userConfirmSpecialChar() {
@@ -112,6 +133,7 @@ function userConfirmSpecialChar() {
   );
   // Checks #special checkbox if user selects true
   check(specialChar, "special");
+  return specialChar;
 }
 
 // Function to check checkboxes
