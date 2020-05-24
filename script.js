@@ -38,20 +38,11 @@ function generatePassword() {
     document.getElementById("criteria").hidden = false;
   }
 
-  // Prompt to decide if lowercase characters are to be included in the password
-  var lowercaseChar = lowercaseCharactersPrompt();
-
-  // Prompt to decide if uppercase characters are to be included in the password
-  var uppercaseChar = uppercaseCharactersPrompt();
-
-  // Prompt to decide if numeric characters are to be included in the password
-  var numericChar = numericCharactersPrompt();
-
-  // Prompt to decide if special characters are to be included in the password
-  var specialChar = specialCharactersPrompt();
+  // Return of prompt responses 
+  var criteria = criteriaPrompts();
 
   //Password
-  return password;
+  // return password;
 }
 
 // Confirmation that the user wants to continue
@@ -75,44 +66,36 @@ function enterPasswordLengthPrompt() {
   return numberEntered;
 }
 
-// Prompt to decide if lowercase characters are to be included in the password
-function lowercaseCharactersPrompt() {
+function criteriaPrompts() {
+  // Prompt to decide if lowercase characters are to be included in the password
   var lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
   );
   // Checks #lowercase checkbox if user selects true
   check(lowercaseChar, "lowercase");
-  return lowercaseChar;
-}
 
-// Prompt to decide if uppercase characters are to be included in the password
-function uppercaseCharactersPrompt() {
+  // Prompt to decide if uppercase characters are to be included in the password
   var uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
   );
   // Checks #uppercase checkbox if user selects true
   check(uppercaseChar, "uppercase");
-  return uppercaseChar;
-}
 
-// Prompt to decide if numeric characters are to be included in the password
-function numericCharactersPrompt() {
+  // Prompt to decide if numeric characters are to be included in the password
   var numericChar = confirm(
     "Click OK to confirm including numeric characters."
   );
   // Checks #numeric checkbox if user selects true
   check(numericChar, "numeric");
-  return numericChar;
-}
 
-// Prompt to decide if special characters are to be included in the password
-function specialCharactersPrompt() {
+  // Prompt to decide if special characters are to be included in the password
   var specialChar = confirm(
     "Click OK to confirm including special characters."
   );
   // Checks #special checkbox if user selects true
   check(specialChar, "special");
-  return specialChar;
+
+  return lowercaseChar, uppercaseChar, numericChar, specialChar;
 }
 
 // Function to check checkboxes
