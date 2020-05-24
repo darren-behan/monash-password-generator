@@ -12,6 +12,12 @@ function writePassword() {
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
+// Add event listener to show criteria selected
+generateBtn.addEventListener("click", function() {
+  document.getElementById("instructions").hidden = true;
+  document.getElementById("criteria").hidden = false;
+}, false);
+
 // Function to generate a password
 function generatePassword() {
   // Message to continue to confirm criteria to build the password
