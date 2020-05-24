@@ -53,6 +53,7 @@ function enterPasswordLengthPrompt() {
       ""
     )
   );
+  // Sets #password-length text field with user number entered
   document.getElementById("password-length").value = numberEntered;
   return numberEntered;
 }
@@ -62,6 +63,7 @@ function lowercaseCharactersPrompt() {
   var lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
   );
+  // Checks #lowercase checkbox if user selects true
   check(lowercaseChar, "lowercase");
   return lowercaseChar;
 }
@@ -71,6 +73,7 @@ function uppercaseCharactersPrompt() {
   var uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
   );
+  // Checks #uppercase checkbox if user selects true
   check(uppercaseChar, "uppercase");
   return uppercaseChar;
 }
@@ -80,6 +83,7 @@ function numericCharactersPrompt() {
   var numericChar = confirm(
     "Click OK to confirm including numeric characters."
   );
+  // Checks #numeric checkbox if user selects true
   check(numericChar, "numeric");
   return numericChar;
 }
@@ -89,6 +93,7 @@ function specialCharactersPrompt() {
   var specialChar = confirm(
     "Click OK to confirm including special characters."
   );
+  // Checks #special checkbox if user selects true
   check(specialChar, "special");
   return specialChar;
 }
