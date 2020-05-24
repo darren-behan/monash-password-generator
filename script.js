@@ -39,7 +39,7 @@ function generatePassword() {
   }
 
   // Return of prompt responses 
-  var criteria = criteriaPrompts();
+  var characterCriteria = characterCriteriaPrompts();
 
   //Password
   // return password;
@@ -66,7 +66,7 @@ function enterPasswordLengthPrompt() {
   return numberEntered;
 }
 
-function criteriaPrompts() {
+function characterCriteriaPrompts() {
   // Prompt to decide if lowercase characters are to be included in the password
   var lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
