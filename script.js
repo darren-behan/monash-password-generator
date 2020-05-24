@@ -20,26 +20,14 @@ function generatePassword() {
     return;
   }
 
-  // Prompt to decide the length of the password
-  var passwordLength = enterPasswordLengthPrompt();
-  if (passwordLength < 8) {
-    alert("Password length too short - try again");
-    // Exits if password is too short
-    return;
-  } else if (passwordLength > 128) {
-    alert("Password length too long  - try again");
-    // Exits if password is too long
-    return;
-  }
+  // Return of prompt responses 
+  var criteria = criteriaPrompts();
 
   // Show criteria selected
-  if (confirm === true) {
+  if (confirm === true && criteria === true) {
     document.getElementById("instructions").hidden = true;
     document.getElementById("criteria").hidden = false;
   }
-
-  // Return of prompt responses 
-  var characterCriteria = characterCriteriaPrompts();
 
   //Password
   // return password;
@@ -53,20 +41,24 @@ function confirmation() {
   return userConfirmation;
 }
 
-// Prompt to decide the length of the password
-function enterPasswordLengthPrompt() {
-  var numberEntered = Number(
-    window.prompt(
-      "Enter a length of at least 8 characters and no more than 128 characters",
-      ""
-    )
-  );
-  // Sets #password-length text field with user number entered
-  document.getElementById("password-length").value = numberEntered;
-  return numberEntered;
-}
+function criteriaPrompts() {
+  lowercase = "abcdefghijklmnopqrstuvwxyz";
+  uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  numbers = "0123456789";
+  punctuation = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 
-function characterCriteriaPrompts() {
+  // Prompt to decide the length of the password
+  var passwordLength = enterPasswordLengthPrompt();
+  if (passwordLength < 8) {
+    alert("Password length too short - try again");
+    // Exits if password is too short
+    return;
+  } else if (passwordLength > 128) {
+    alert("Password length too long  - try again");
+    // Exits if password is too long
+    return;
+  }
+  
   // Prompt to decide if lowercase characters are to be included in the password
   var lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
@@ -95,7 +87,20 @@ function characterCriteriaPrompts() {
   // Checks #special checkbox if user selects true
   check(specialChar, "special");
 
-  return lowercaseChar, uppercaseChar, numericChar, specialChar;
+  return lowercaseChar && uppercaseChar && numericChar && specialChar;
+}
+
+// Prompt to decide the length of the password
+function enterPasswordLengthPrompt() {
+  var numberEntered = Number(
+    window.prompt(
+      "Enter a length of at least 8 characters and no more than 128 characters",
+      ""
+    )
+  );
+  // Sets #password-length text field with user number entered
+  document.getElementById("password-length").value = numberEntered;
+  return numberEntered;
 }
 
 // Function to check checkboxes
