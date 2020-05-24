@@ -52,7 +52,7 @@ function generatePassword() {
   var uppercaseChar = userConfirmUppercase()
 
   // Prompt to decide if numeric characters are to be included in the password
-  var numberChar = userConfirmNumericChar()
+  var numberChar = userConfirmNumberChar()
 
   // Prompt to decide if special characters are to be included in the password
   var specialChar = userConfirmSpecialChar()
@@ -91,15 +91,15 @@ function userConfirmLowercase() {
 }
 
 function userConfirmUppercase() {
-  confirm(
+  uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
   );
   // Checks #uppercase checkbox if user selects true
   check(uppercaseChar, "uppercase");
 }
 
-function userConfirmNumericChar() {
-  confirm(
+function userConfirmNumberChar() {
+  numberChar = confirm(
     "Click OK to confirm including numeric characters."
   );
   // Checks #numeric checkbox if user selects true
@@ -107,7 +107,7 @@ function userConfirmNumericChar() {
 }
 
 function userConfirmSpecialChar() {
-  confirm(
+  specialChar = confirm(
     "Click OK to confirm including special characters."
   );
   // Checks #special checkbox if user selects true
