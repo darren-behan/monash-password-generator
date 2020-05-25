@@ -1,5 +1,10 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+var refreshBtn = document.querySelector("#refresh");
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+refreshBtn.addEventListener("click", pageReload);
 
 // Write password to the #password input
 function writePassword() {
@@ -9,8 +14,10 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+// Function to reload page
+function pageReload() {
+  onClick=window.location.reload();
+}
 
 // Function to generate a password
 function generatePassword() {
@@ -73,7 +80,11 @@ function generatePassword() {
     passwordCharacters += specialCharacters;
   }
 
-  password += passwordCharacters;
+  for (var i = 0; i < passwordLength; i++) {
+    password += passwordCharacters.charAt(
+      Math.random() * passwordCharacters.length
+    )
+  }
 
   //Password
   return password;
