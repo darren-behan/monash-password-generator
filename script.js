@@ -21,11 +21,6 @@ function pageReload() {
 
 // Function to generate a password
 function generatePassword() {
-  var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz",
-  uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-  numberCharacters = "0123456789",
-  specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=",
-  passwordCharacters = "",
   password = "";
 
   // Message to continue to confirm criteria to build the password
@@ -52,37 +47,12 @@ function generatePassword() {
     document.getElementById("criteria").hidden = false;
   }
   
-  // Prompt to decide if lowercase characters are to be included in the password
-  var lowercaseChar = userConfirmLowercase();
-  // If lowercase is confirmed for use, assign the lowercaseCharacters variable to the passwordCharacters
-  if (lowercaseChar === true) {
-    passwordCharacters += lowercaseCharacters;
-  }
-
-  // Prompt to decide if uppercase characters are to be included in the password
-  var uppercaseChar = userConfirmUppercase()
-  // If lowercase is confirmed for use, assign the uppercaseCharacters variable to the passwordCharacters
-  if (uppercaseChar === true) {
-    passwordCharacters += uppercaseCharacters;
-  }
-
-  // Prompt to decide if numeric characters are to be included in the password
-  var numberChar = userConfirmNumberChar()
-  // If lowercase is confirmed for use, assign the numberCharacters variable to the passwordCharacters
-  if (numberChar === true) {
-    passwordCharacters += numberCharacters;
-  }
-
-  // Prompt to decide if special characters are to be included in the password
-  var specialChar = userConfirmSpecialChar()
-  // If lowercase is confirmed for use, assign the specialCharacters variable to the passwordCharacters
-  if (specialChar === true) {
-    passwordCharacters += specialCharacters;
-  }
+  // Prompts to decide which characters are to be included in the password
+  var passwordChar = userConfirmCriteria();
 
   for (var i = 0; i < passwordLength; i++) {
-    password += passwordCharacters.charAt(
-      Math.random() * passwordCharacters.length
+    password += passwordChar.charAt(
+      Math.random() * passwordChar.length
     )
   }
 
@@ -111,40 +81,57 @@ function enterPasswordLengthPrompt() {
   return numberEntered;
 }
 
-function userConfirmLowercase() {
+// Prompts to decide which characters are to be included in the password
+
+function userConfirmCriteria() {
+  lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
+  uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  numberCharacters = "0123456789";
+  specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+  passwordCharacters = "";
+
   lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
   );
   // Checks #lowercase checkbox if user selects true
   check(lowercaseChar, "lowercase");
-  return lowercaseChar;
-}
 
-function userConfirmUppercase() {
   uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
   );
   // Checks #uppercase checkbox if user selects true
   check(uppercaseChar, "uppercase");
-  return uppercaseChar;
-}
 
-function userConfirmNumberChar() {
   numberChar = confirm(
     "Click OK to confirm including numeric characters."
   );
   // Checks #numeric checkbox if user selects true
   check(numberChar, "numeric");
-  return numberChar;
-}
 
-function userConfirmSpecialChar() {
   specialChar = confirm(
     "Click OK to confirm including special characters."
   );
   // Checks #special checkbox if user selects true
   check(specialChar, "special");
-  return specialChar;
+
+  // If lowercase is confirmed for use, assign the lowercaseCharacters variable to the passwordCharacters
+  if (lowercaseChar === true) {
+    passwordCharacters += lowercaseCharacters;
+  }
+
+  if (uppercaseChar === true) {
+    passwordCharacters += uppercaseCharacters;
+  }
+
+  if (numberChar === true) {
+    passwordCharacters += numberCharacters;
+  }
+
+  if (specialChar === true) {
+    passwordCharacters += specialCharacters;
+  }
+
+  return passwordCharacters;
 }
 
 // Function to check checkboxes
