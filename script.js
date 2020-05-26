@@ -1,6 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var refreshBtn = document.querySelector("#refresh");
+var refreshBtn = document.querySelector("#refresh-btn");
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
@@ -21,8 +21,6 @@ function pageReload() {
 
 // Function to generate a password
 function generatePassword() {
-  password = "";
-
   // Message to continue to confirm criteria to build the password
   var confirm = userConfirmation();
   if (confirm === false) {
@@ -44,6 +42,7 @@ function generatePassword() {
   // Show criteria selected
   if (confirm === true) {
     document.getElementById("instructions").hidden = true;
+    document.getElementById("refresh").hidden = false;
     document.getElementById("criteria").hidden = false;
   }
   
@@ -81,48 +80,39 @@ function enterPasswordLengthPrompt() {
   return numberEntered;
 }
 
-// Prompts to decide which characters are to be included in the password
+// Prompts to decide which characters are to be included in the password. If user confirms true for prompts, assign the relevant characters to the passwordCharacters & check the relevant checkbox
 
 function userConfirmCriteria() {
   lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
-  );
-  // Checks #lowercase checkbox if user selects true
-  check(lowercaseChar, lowercase);
+  ); 
+  if (lowercaseChar === true) {
+    passwordCharacters += lowercaseCharacters;
+    check(lowercaseChar, lowercase);
+  } 
 
   uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
   );
-  // Checks #uppercase checkbox if user selects true
-  check(uppercaseChar, uppercase);
+  if (uppercaseChar === true) {
+    passwordCharacters += uppercaseCharacters;
+    check(uppercaseChar, uppercase);
+  }
 
   numberChar = confirm(
     "Click OK to confirm including numeric characters."
   );
-  // Checks #numeric checkbox if user selects true
-  check(numberChar, numeric);
+  if (numberChar === true) {
+    passwordCharacters += numberCharacters;
+    check(numberChar, numeric);
+  }
 
   specialChar = confirm(
     "Click OK to confirm including special characters."
   );
-  // Checks #special checkbox if user selects true
-  check(specialChar, special);
-
-  // If lowercase is confirmed for use, assign the lowercaseCharacters variable to the passwordCharacters
-  if (lowercaseChar === true) {
-    passwordCharacters += lowercaseCharacters;
-  }
-
-  if (uppercaseChar === true) {
-    passwordCharacters += uppercaseCharacters;
-  }
-
-  if (numberChar === true) {
-    passwordCharacters += numberCharacters;
-  }
-
   if (specialChar === true) {
     passwordCharacters += specialCharacters;
+    check(specialChar, special);
   }
 
   return passwordCharacters;
@@ -150,3 +140,4 @@ var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberCharacters = "0123456789";
 var specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
 passwordCharacters = "";
+password = "";
