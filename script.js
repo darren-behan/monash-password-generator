@@ -71,7 +71,7 @@ function enterPasswordLengthPrompt() {
   return numberEntered;
 }
 
-// Prompts to decide which characters are to be included in the password. If user confirms true for prompts, assign the relevant characters to the passwordCharacters & check the relevant checkbox
+// Series of prompts and actions to execute if true
 
 function userConfirmCriteria() {
   var passwordCharacters = "";
