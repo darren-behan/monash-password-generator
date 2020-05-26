@@ -16,16 +16,12 @@ function writePassword() {
 
 // Function to reload page
 function pageReload() {
-  onClick=window.location.reload();
+  onClick = window.location.reload();
 }
 
 // Function to generate a password
 function generatePassword() {
-  // Message to continue to confirm criteria to build the password
-  var confirm = userConfirmation();
-  if (confirm === false) {
-    return;
-  }
+  var password = "";
 
   // Prompt to decide the length of the password
   var passwordLength = enterPasswordLengthPrompt();
@@ -39,32 +35,20 @@ function generatePassword() {
     return;
   }
 
-  // Show criteria selected
-  if (confirm === true) {
+  // Show criteria selected & page refresh button
     document.getElementById("instructions").hidden = true;
     document.getElementById("refresh").hidden = false;
     document.getElementById("criteria").hidden = false;
-  }
-  
+
   // Prompts to decide which characters are to be included in the password
   var passwordChar = userConfirmCriteria();
 
   for (var i = 0; i < passwordLength; i++) {
-    password += passwordChar.charAt(
-      Math.random() * passwordChar.length
-    )
+    password += passwordChar.charAt(Math.random() * passwordChar.length);
   }
 
   //Password
   return password;
-}
-
-// Confirmation that the user wants to continue
-function userConfirmation() {
-  var confirmation = confirm(
-    "Let's confirm your criteria for your password"
-  );
-  return confirmation;
 }
 
 // Prompt to decide the length of the password
@@ -83,13 +67,15 @@ function enterPasswordLengthPrompt() {
 // Prompts to decide which characters are to be included in the password. If user confirms true for prompts, assign the relevant characters to the passwordCharacters & check the relevant checkbox
 
 function userConfirmCriteria() {
+  var passwordCharacters = "";
+
   lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
-  ); 
+  );
   if (lowercaseChar === true) {
     passwordCharacters += lowercaseCharacters;
     check(lowercaseChar, lowercase);
-  } 
+  }
 
   uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
@@ -99,17 +85,13 @@ function userConfirmCriteria() {
     check(uppercaseChar, uppercase);
   }
 
-  numberChar = confirm(
-    "Click OK to confirm including numeric characters."
-  );
+  numberChar = confirm("Click OK to confirm including numeric characters.");
   if (numberChar === true) {
     passwordCharacters += numberCharacters;
     check(numberChar, numeric);
   }
 
-  specialChar = confirm(
-    "Click OK to confirm including special characters."
-  );
+  specialChar = confirm("Click OK to confirm including special characters.");
   if (specialChar === true) {
     passwordCharacters += specialCharacters;
     check(specialChar, special);
@@ -139,5 +121,3 @@ var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
 var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var numberCharacters = "0123456789";
 var specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
-passwordCharacters = "";
-password = "";
