@@ -84,35 +84,29 @@ function enterPasswordLengthPrompt() {
 // Prompts to decide which characters are to be included in the password
 
 function userConfirmCriteria() {
-  lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
-  uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  numberCharacters = "0123456789";
-  specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
-  passwordCharacters = "";
-
   lowercaseChar = confirm(
     "Click OK to confirm including lowercase characters."
   );
   // Checks #lowercase checkbox if user selects true
-  check(lowercaseChar, "lowercase");
+  check(lowercaseChar, lowercase);
 
   uppercaseChar = confirm(
     "Click OK to confirm including uppercase characters."
   );
   // Checks #uppercase checkbox if user selects true
-  check(uppercaseChar, "uppercase");
+  check(uppercaseChar, uppercase);
 
   numberChar = confirm(
     "Click OK to confirm including numeric characters."
   );
   // Checks #numeric checkbox if user selects true
-  check(numberChar, "numeric");
+  check(numberChar, numeric);
 
   specialChar = confirm(
     "Click OK to confirm including special characters."
   );
   // Checks #special checkbox if user selects true
-  check(specialChar, "special");
+  check(specialChar, special);
 
   // If lowercase is confirmed for use, assign the lowercaseCharacters variable to the passwordCharacters
   if (lowercaseChar === true) {
@@ -136,13 +130,23 @@ function userConfirmCriteria() {
 
 // Function to check checkboxes
 function check(x, y) {
-  if (x === true && y === "lowercase") {
-    document.getElementById("lowercase").checked = true;
-  } else if (x === true && y === "uppercase") {
-    document.getElementById("uppercase").checked = true;
-  } else if (x === true && y === "numeric") {
-    document.getElementById("numeric").checked = true;
-  } else if (x === true && y === "special") {
-    document.getElementById("special").checked = true;
+  if (x === true && y === lowercase) {
+    document.getElementById(lowercase).checked = true;
+  } else if (x === true && y === uppercase) {
+    document.getElementById(uppercase).checked = true;
+  } else if (x === true && y === numeric) {
+    document.getElementById(numeric).checked = true;
+  } else if (x === true && y === special) {
+    document.getElementById(special).checked = true;
   }
 }
+
+var lowercase = "lowercase";
+var uppercase = "uppercase";
+var numeric = "numeric";
+var special = "special";
+var lowercaseCharacters = "abcdefghijklmnopqrstuvwxyz";
+var uppercaseCharacters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var numberCharacters = "0123456789";
+var specialCharacters = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
+passwordCharacters = "";
