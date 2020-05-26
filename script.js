@@ -36,12 +36,19 @@ function generatePassword() {
   }
 
   // Show criteria selected & page refresh button
-    document.getElementById("instructions").hidden = true;
-    document.getElementById("refresh").hidden = false;
-    document.getElementById("criteria").hidden = false;
+  document.getElementById("instructions").hidden = true;
+  document.getElementById("refresh").hidden = false;
+  document.getElementById("criteria").hidden = false;
 
   // Prompts to decide which characters are to be included in the password
   var passwordChar = userConfirmCriteria();
+  if (passwordChar === "") {
+    document.getElementById("criteria").hidden = true;
+    alert("No criteria selected - Click Refresh Page button");
+    // Exits if no criteria selected
+    return;
+  }
+
 
   for (var i = 0; i < passwordLength; i++) {
     password += passwordChar.charAt(Math.random() * passwordChar.length);
